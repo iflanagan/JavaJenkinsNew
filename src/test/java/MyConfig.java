@@ -7,8 +7,7 @@ public class MyConfig {
     // Server Provider info
     public static final String myRoot = "com.IanFlanagan";
     public static final String myHost = "Ians-MacBook-Pro.local"; // old localhost new Utils.GetHostName(); Ians-MacBook-Pro.local
-    public static final String myBranch = "master";
-    public static final String myCodeVersion = "1.0.1";
+    public static final String myBranch = "main";
 
 }
 
