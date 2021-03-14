@@ -1,7 +1,6 @@
 import static com.rollbar.notifier.config.ConfigBuilder.withAccessToken;
 import com.rollbar.notifier.Rollbar;
 import org.junit.jupiter.api.*;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 

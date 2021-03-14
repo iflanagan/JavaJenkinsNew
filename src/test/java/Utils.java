@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class Utils {
 
-
     public static String genHash(int length) {
 
         // create a string of lowercase characters and numbers
@@ -24,11 +23,8 @@ public class Utils {
             // append the character to string builder
             sb.append(randomChar);
         }
-
         String randomString = sb.toString();
         System.out.println("Random String is: " + randomString);
         return randomString;
-
     }
-
 }
