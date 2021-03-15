@@ -3,12 +3,15 @@ import com.rollbar.notifier.Rollbar;
 import org.junit.jupiter.api.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.AccessDeniedException;
+import java.util.HashMap;
 
 public class MyTests {
 
     private static String myHash = Utils.genHash(10);
     private static String test = null;
     private static Rollbar rollbar;
+    private static HashMap<String,Object> myRollbarMap = new HashMap<>();
 
    @BeforeEach
    public void setup() {
@@ -35,6 +38,31 @@ public class MyTests {
            rollbar.close(true);
        } catch (Exception e) {
            System.out.println("Can't close rollbar connection " +e.getMessage());
+       }
+   }
+   @Test
+   public void generateLotsErrors() {
+
+       System.out.println("calling generateLotsErrors() test now");
+
+       try
+       {
+           throw new Exception("Error");
+       } catch (Exception e) {
+           for (int i =0; i<=50; i++) {
+               rollbar.critical(e,i+ " new Critical Error");
+           }
+       }
+   }
+   @Test
+   public void customFields() {
+
+       try
+       {
+           throw new AccessDeniedException("New Runtime exception");
+       } catch (Exception e) {
+
+           rollbar.critical(e,myRollbarMap, "Custom Field Test");
        }
    }
 
