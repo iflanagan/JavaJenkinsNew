@@ -27,9 +27,10 @@ public class RollbarUtils {
 
         rollbar = Rollbar.init(withAccessToken(token)
                 .environment(environment)
-                .codeVersion(codeVersion)
-                .person(new MyPersonProvider())
-                .server(new ServerProvider())
+                .codeVersion(codeVersion) // if you want to use versions
+                .person(new MyPersonProvider()) // if you want to enable people tracking
+                .server(new ServerProvider()) // if you want to enable source control
+                .transformer(new RemoveFrameworkTransformer())
                 .enabled(true)
                 .handleUncaughtErrors(true)
                 .framework(MyConfig.framework)
