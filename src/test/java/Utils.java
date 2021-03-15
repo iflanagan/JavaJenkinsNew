@@ -2,6 +2,20 @@ import java.util.Random;
 
 public class Utils {
 
+
+
+    public static String changeEnv() {
+
+        String [] myEnvironments = {"QA","DEV","UAT","PROD"};
+        int max = 3;
+        int min = 0;
+
+        Random rand = new Random();
+        int randomNumId = rand.nextInt((max - min) + 1) + min;
+        System.out.println("String Element is: " +myEnvironments[randomNumId]);
+        return myEnvironments[randomNumId];
+    }
+
     public static String genHash(int length) {
 
         // create a string of lowercase characters and numbers

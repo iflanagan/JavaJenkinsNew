@@ -23,12 +23,12 @@ public class MyTests {
        rollbar.info("Starting setup() method before test starts");
    }
 
-   @AfterEach
+  @AfterEach
    public void teardown() {
 
        try {
 
-         //  RollbarUtils.doHttpUrlConnectionAction(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
+           RollbarUtils.doHttpUrlConnectionAction(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
            rollbar.info("Close Rollbar Connection");
            rollbar.close(true);
        } catch (Exception e) {
