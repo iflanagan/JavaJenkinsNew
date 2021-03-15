@@ -17,23 +17,18 @@ public class MyTests {
    public void setup() {
 
        System.out.println("\nStarting setup() method before test starts\n");
-
-       rollbar = Rollbar.init(withAccessToken(MyConfig.myToken)
-               .environment(MyConfig.myENv)
-               .codeVersion(MyConfig.myVersion)
-               .person(new MyPersonProvider())
-               .server(new ServerProvider())
-               .enabled(true)
-               .build());
-
+       RollbarUtils rb = new RollbarUtils();
+       rollbar = rb.RollbarUtils(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
+       System.out.println("Connecting to rollbar with Token: " +rb.getToken()+ " Environment: " +rb.getEnvironment()+ " Code_version: " +rb.getCodeVersion());
        rollbar.info("Starting setup() method before test starts");
-
    }
 
    @AfterEach
    public void teardown() {
 
        try {
+
+         //  RollbarUtils.doHttpUrlConnectionAction(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
            rollbar.info("Close Rollbar Connection");
            rollbar.close(true);
        } catch (Exception e) {
@@ -91,7 +86,7 @@ public class MyTests {
         System.out.println("End test method");
     }
     @Test
-    public void generatNullPointerError(){
+    public void generateNullPointerError(){
 
         try
         {
