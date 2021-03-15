@@ -27,11 +27,11 @@ public class RollbarUtils {
 
         rollbar = Rollbar.init(withAccessToken(token)
                 .environment(environment)
-                .codeVersion(codeVersion) // if you want to use versions
-                .person(new MyPersonProvider()) // if you want to enable people tracking
-                .server(new ServerProvider()) // if you want to enable source control
-                .transformer(new RemoveFrameworkTransformer())
-                .enabled(true)
+                .codeVersion(codeVersion) // enable if you want to use versions
+                .person(new MyPersonProvider()) // enable if you want to enable people tracking
+                .server(new ServerProvider()) // enable if you want to enable source control
+                .transformer(new RemoveFrameworkTransformer()) // enable is you want to transform the payload in this example it removes the framework
+                .enabled(true) // required set to false to not send data to rollbar
                 .handleUncaughtErrors(true)
                 .framework(MyConfig.framework)
                 .platform(MyConfig.platform)

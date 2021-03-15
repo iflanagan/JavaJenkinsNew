@@ -17,7 +17,9 @@ public class MyTests {
    public void setup() {
 
        System.out.println("\nStarting setup() method before test starts\n");
+       // create instance of rollbarutils class
        RollbarUtils rb = new RollbarUtils();
+       // call constructor which returns a rollbar object
        rollbar = rb.RollbarUtils(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
        System.out.println("Connecting to rollbar with Token: " +rb.getToken()+ " Environment: " +rb.getEnvironment()+ " Code_version: " +rb.getCodeVersion());
        rollbar.info("Starting setup() method before test starts");
