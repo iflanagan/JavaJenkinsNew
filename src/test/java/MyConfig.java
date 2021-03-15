@@ -1,6 +1,6 @@
 public class MyConfig {
 
-    public static final String myToken = "00efbc3635534cf8b820c951fe2f5502";
+    public static final String myToken = "<post_server_item>";
     public static final String myENv = "prod";
     public static final String myVersion = "1.2";
     public static final String framework = "Junit5";
