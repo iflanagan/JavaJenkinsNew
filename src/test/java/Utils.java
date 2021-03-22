@@ -7,12 +7,12 @@ public class Utils {
     public static String changeEnv() {
 
         String [] myEnvironments = {"QA","DEV","UAT","PROD"};
-        int max = 3;
         int min = 0;
 
         Random rand = new Random();
-        int randomNumId = rand.nextInt((max - min) + 1) + min;
-        System.out.println("String Element is: " +myEnvironments[randomNumId]);
+       // int randomNumId = rand.nextInt((max - min) + 1) + min;
+        int randomNumId = rand.nextInt((myEnvironments.length - min) + 1) + min;
+        System.out.println("Environment is: " +myEnvironments[randomNumId]);
         return myEnvironments[randomNumId];
     }
 

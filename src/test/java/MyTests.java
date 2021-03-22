@@ -1,10 +1,12 @@
-import static com.rollbar.notifier.config.ConfigBuilder.withAccessToken;
 import com.rollbar.notifier.Rollbar;
 import org.junit.jupiter.api.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.AccessDeniedException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ListIterator;
 
 public class MyTests {
 
@@ -30,13 +32,23 @@ public class MyTests {
 
        try {
 
-           RollbarUtils.doHttpUrlConnectionAction(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
+           RollbarAPI rbapi = new RollbarAPI();
+        //   rbapi.deploy(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
            rollbar.info("Close Rollbar Connection");
            rollbar.close(true);
        } catch (Exception e) {
            System.out.println("Can't close rollbar connection " +e.getMessage());
        }
    }
+
+   @Test
+   public void checkAPI() throws Exception {
+
+      RollbarAPI rbapi = new RollbarAPI();
+      boolean isUp = rbapi.RollbarAPIcheck();
+      //assertEquals(true, isUp);
+   }
+
    @Test
    public void generateLotsErrors() {
 
@@ -54,12 +66,15 @@ public class MyTests {
    @Test
    public void customFields() {
 
+       System.out.println("calling customFields() test now");
+
        try
        {
            throw new AccessDeniedException("New Runtime exception");
        } catch (Exception e) {
 
            rollbar.critical(e,myRollbarMap, "Custom Field Test");
+           rollbar.error(e,myRollbarMap, "Custom Field Test");
        }
    }
 
@@ -75,6 +90,9 @@ public class MyTests {
         } catch (ArithmeticException e) {
             System.out.println("Exception " +e.getMessage());
             rollbar.error(e," Divide by Zero Error");
+            rollbar.critical(e," Divide by Zero Error");
+            rollbar.debug(e," Divide by Zero Error");
+
 
         } finally
         {
@@ -90,6 +108,8 @@ public class MyTests {
     @Test
     public void generateNullPointerError(){
 
+        System.out.println("\nStarting generateNullPointerError() test now\n");
+
         try
         {
             test.toString();
@@ -102,6 +122,8 @@ public class MyTests {
     @Test
     public void filenotFoundError() {
 
+        System.out.println("\nStarting filenotFoundError() test now\n");
+
         FileInputStream fis = null;
         try {
             fis = new FileInputStream("myfile.txt");
@@ -113,10 +135,12 @@ public class MyTests {
     @Test
     public void arrayOutOfBoundsError() {
 
+        System.out.println("\nStarting arrayOutOfBoundsError() test now\n");
+
         int myArray[] = { 1,2,3 };
 
         try {
-            int myValue = myArray[3];
+            int myValue = myArray[3]; // creates error
             System.out.println(myValue);
         } catch (ArrayIndexOutOfBoundsException e) {
             rollbar.critical(e," Out of bounds array exception " +e.getMessage().toString());
@@ -126,7 +150,6 @@ public class MyTests {
     public void generateRandomError() {
 
         String myHash = Utils.genHash(10);
-
         System.out.println("Calling generateRandomError()  method");
         rollbar.info(myHash+ " Information Message");
     }
@@ -137,5 +160,26 @@ public class MyTests {
         int quotient = 1 / 0;
         System.out.println("Quotient: " +quotient);
 
+    }
+    @Test
+    public void illegalStateException() {
+
+        System.out.println("Calling illegalStateException()  method");
+
+        try
+        {
+            //Instantiating an ArrayList object
+            ArrayList<String> list = new ArrayList<String>();
+            //populating the ArrayList
+            list.add("apples");
+            list.add("mangoes");
+            //Getting the Iterator object of the ArrayList
+            ListIterator<String> it = list.listIterator();
+            //Removing the element without moving to first position
+            it.remove();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            rollbar.critical(e, " illegalStateException " +e.getMessage());
+        }
     }
 }

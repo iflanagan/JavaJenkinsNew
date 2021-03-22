@@ -34,6 +34,7 @@ public class RollbarUtils {
                 .filter(new FilterItems()) // don't send debug items
                 .enabled(true) // required set to false to not send data to rollbar
                 .handleUncaughtErrors(true)
+               // .endpoint("test")
                 .framework(MyConfig.framework)
                 .platform(MyConfig.platform)
                 .build());
