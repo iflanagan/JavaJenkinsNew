@@ -58,7 +58,7 @@ public class MyTests {
        {
            throw new Exception("Error");
        } catch (Exception e) {
-           for (int i =0; i<=50; i++) {
+           for (int i =0; i<=5; i++) {
                rollbar.critical(e,i+ " new Critical Error");
            }
        }
