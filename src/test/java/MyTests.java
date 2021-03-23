@@ -49,7 +49,7 @@ public class MyTests {
       //assertEquals(true, isUp);
    }
 
-   @Test
+  // @Test
    public void generateLotsErrors() {
 
        System.out.println("calling generateLotsErrors() test now");
@@ -153,7 +153,7 @@ public class MyTests {
         System.out.println("Calling generateRandomError()  method");
         rollbar.info(myHash+ " Information Message");
     }
-    @Test
+   // @Test
     public void unhandledException() {
 
         System.out.println("Calling unhandledException() test");
