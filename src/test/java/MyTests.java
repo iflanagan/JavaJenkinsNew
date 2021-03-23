@@ -22,7 +22,13 @@ public class MyTests {
        // create instance of rollbarutils class
        RollbarUtils rb = new RollbarUtils();
        // call constructor which returns a rollbar object
-       rollbar = rb.RollbarUtils(MyConfig.myToken, MyConfig.myENv, MyConfig.myVersion);
+       /*
+
+       Rollbar rollbar = Rollbar.init(withAccessToken(System.getenv("ROLLBAR_ACCESS_TOKEN"))
+                .environment(System.getenv("ENVIRONMENT"))
+                .codeVersion(System.getenv("CODE_VERSION"))
+        */
+       rollbar = rb.RollbarUtils(System.getenv("ROLLBAR_ACCESS_TOKEN"), MyConfig.myENv, MyConfig.myVersion);
        System.out.println("Connecting to rollbar with Token: " +rb.getToken()+ " Environment: " +rb.getEnvironment()+ " Code_version: " +rb.getCodeVersion());
        rollbar.info("Starting setup() method before test starts");
    }
