@@ -28,7 +28,7 @@ public class MyTests {
                 .environment(System.getenv("ENVIRONMENT"))
                 .codeVersion(System.getenv("CODE_VERSION"))
         */
-       rollbar = rb.RollbarUtils(System.getenv("ROLLBAR_ACCESS_TOKEN"), MyConfig.myENv, MyConfig.myVersion);
+       rollbar = rb.RollbarUtils(System.getenv("ROLLBAR_ACCESS_TOKEN"), MyConfig.myENv, System.getenv("CODE_VERSION"));
        System.out.println("Connecting to rollbar with Token: " +rb.getToken()+ " Environment: " +rb.getEnvironment()+ " Code_version: " +rb.getCodeVersion());
        rollbar.info("Starting setup() method before test starts");
    }
