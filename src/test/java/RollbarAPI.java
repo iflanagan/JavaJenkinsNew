@@ -23,7 +23,7 @@ public class RollbarAPI {
             " -F revision=" + buildNum +
             " -F local_username=" + myUser;
 
-    public static boolean checkRollbarAPI() {
+   /* public static boolean checkRollbarAPI() {
 
         boolean isAPIUp = false;
 
@@ -45,7 +45,7 @@ public class RollbarAPI {
             e.printStackTrace();
         }
         return isAPIUp;
-    }
+    }*/
     public boolean RollbarAPIcheck() throws Exception {
 
         //
@@ -117,7 +117,7 @@ public class RollbarAPI {
         return value;
     }
 
-    public static void getOccurrences(String token, String env, String vers) {
+    /*public static void getOccurrences(String token, String env, String vers) {
 
       System.out.println("Calling getOccurrences() method now.");
 
@@ -188,7 +188,7 @@ public class RollbarAPI {
            }
        }
     }
-
+*/
     public boolean deploy(String token, String env, String vers) {
 
         URL url = null;
