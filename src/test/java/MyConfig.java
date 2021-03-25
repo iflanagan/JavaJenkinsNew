@@ -3,7 +3,8 @@ import java.util.Random;
 public class MyConfig {
 
    // public static final String myToken = "<test>"; //   use <post_server_item> token for your rollbar project
-    public static final String myENv =  Utils.changeEnv();
+  //  public static final String myENv =  Utils.changeEnv();
+    public static final String myENv =  "prod";
    // public static final String myVersion = RollbarUtils.randomString(10);
     public static final String framework = "Junit5";
     public static final String platform = "macOS";
