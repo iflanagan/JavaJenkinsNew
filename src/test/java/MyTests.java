@@ -158,6 +158,7 @@ public class MyTests {
         String myHash = Utils.genHash(10);
         System.out.println("Calling generateRandomError()  method");
         rollbar.info(myHash+ " Information Message");
+        rollbar.critical(myHash+ " Critical Error");
     }
    // @Test
     public void unhandledException() {
