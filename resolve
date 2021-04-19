@@ -34,7 +34,7 @@ echo "https://api.rollbar.com/api/1/item/$i"
 
 echo "curl -H \"X-Rollbar-Access-Token: $mytoken\" \
 -H \"Content-Type: application/json\" -X PATCH  'https://api.rollbar.com/api/1/item/$i' \
---data '{\"status\": \"resolved\",\"resolved_in_version\": \"$buidnum:\"}'" >> $myConfigFile
+--data '{\"status\": \"resolved\",\"resolved_in_version\": \"$buidnum\"}'" >> $myConfigFile
 echo "" >> $myConfigFile
 
 # delete all occurences 
